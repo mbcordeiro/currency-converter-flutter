@@ -37,11 +37,12 @@ class CurrencyModel {
         bitcoin: 0.00010,
       ),
       CurrencyModel(
-          name: 'Bitcoin',
-          real: 64116.51,
-          dolar: 11351.30,
-          euro: 9689.34,
-          bitcoin: 1.0),
+        name: 'Bitcoin',
+        real: 64116.51,
+        dolar: 11351.30,
+        euro: 9689.34,
+        bitcoin: 1.0,
+      ),
     ];
   }
 }

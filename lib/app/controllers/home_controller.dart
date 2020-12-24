@@ -2,13 +2,13 @@ import 'package:currency_converter/app/models/currency_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeController {
-  TextEditingController toText = TextEditingController();
-  TextEditingController fromText = TextEditingController();
+  final TextEditingController toText;
+  final TextEditingController fromText;
   List<CurrencyModel> currencies;
   CurrencyModel toCurrency;
   CurrencyModel fromCurrency;
 
-  HomeController() {
+  HomeController({this.toText, this.fromText}) {
     currencies = CurrencyModel.getCurrencies();
     toCurrency = currencies[0];
     fromCurrency = currencies[1];
