@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
             top: 100,
             bottom: 20,
           ),
-          child: Column(
+          child: ListView(
             children: [
               Image.asset(
                 'assets/logo.png',
