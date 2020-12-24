@@ -1,6 +1,20 @@
+import 'package:currency_converter/app/models/currency_model.dart';
 import 'package:flutter/material.dart';
 
 class CurrencySelect extends StatelessWidget {
+  final List<CurrencyModel> items;
+  final CurrencyModel selectedItem;
+  final TextEditingController editingController;
+  final void Function(CurrencyModel model) onChanged;
+
+  const CurrencySelect(
+      {Key key,
+      this.items,
+      this.editingController,
+      this.onChanged,
+      this.selectedItem})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,28 +25,23 @@ class CurrencySelect extends StatelessWidget {
             flex: 1,
             child: SizedBox(
               height: 56,
-              child: DropdownButton(
+              child: DropdownButton<CurrencyModel>(
                 iconEnabledColor: Colors.amber,
                 isExpanded: true,
+                value: selectedItem,
                 underline: Container(
                   height: 1,
                   color: Colors.amber,
                 ),
-                items: [
-                  DropdownMenuItem(
-                    child: Text('Real'),
-                  ),
-                  DropdownMenuItem(
-                    child: Text('Dólar'),
-                  ),
-                  DropdownMenuItem(
-                    child: Text('Euro'),
-                  ),
-                  DropdownMenuItem(
-                    child: Text('Bitcoin'),
-                  ),
-                ],
-                onChanged: (value) {},
+                items: items
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e.name),
+                      ),
+                    )
+                    .toList(),
+                onChanged: onChanged,
               ),
             ),
           ),
@@ -42,6 +51,7 @@ class CurrencySelect extends StatelessWidget {
           Expanded(
             flex: 2,
             child: TextField(
+              controller: editingController,
               decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.amber),
